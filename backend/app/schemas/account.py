@@ -1,18 +1,16 @@
 from datetime import date
-from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class AccountResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     name: str
     industry: str
     arr: float
-    health_score: Optional[int]
-    last_contact_date: Optional[date]
+    health_score: int | None
+    last_contact_date: date | None
     owner_id: int
     owner_name: str
-
-    class Config:
-        orm_mode = True
